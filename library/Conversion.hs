@@ -1,4 +1,4 @@
-module Conversion where
+module Conversion (Conversion(..)) where
 
 import BasePrelude
 
