@@ -53,18 +53,6 @@ instance Conversion [Maybe a] [a] where
   {-# INLINE convert #-}
   convert = catMaybes
 
--- |
--- Equivalent to 'sequenceA', 'sequence'.
-instance (Applicative f, Traversable t) => Conversion (t (f a)) (f (t a)) where
-  {-# INLINE convert #-}
-  convert = sequenceA
-
--- |
--- Equivalent to 'join', 'concat'.
-instance (Monad m) => Conversion (m (m a)) (m a) where
-  {-# INLINE convert #-}
-  convert = join
-
 
 instance Conversion Int Integer where 
   {-# INLINE convert #-}
