@@ -27,10 +27,22 @@ instance Alternative f => Conversion (Either a b) (f b) where
   convert = either (const empty) pure
 
 -- |
+-- Checks whether the value is 'Right'.
+instance Conversion (Either a b) Bool where
+  {-# INLINE convert #-}
+  convert = either (const False) (const True)
+
+-- |
 -- Converts to any 'Alternative' type ('Either', list).
 instance Alternative f => Conversion (Maybe a) (f a) where
   {-# INLINE convert #-}
   convert = maybe empty pure
+
+-- |
+-- Checks whether the value is 'Just'.
+instance Conversion (Maybe a) Bool where
+  {-# INLINE convert #-}
+  convert = maybe False (const True)
 
 -- |
 -- Converts into a function, which extracts the value, 
@@ -46,6 +58,12 @@ instance Conversion (Maybe a) (a -> a) where
 instance Alternative f => Conversion [a] (f a) where
   {-# INLINABLE convert #-}
   convert = \case [] -> empty; a : _ -> pure a
+
+-- |
+-- Checks whether the list is not empty.
+instance Conversion [a] Bool where
+  {-# INLINE convert #-}
+  convert = null
 
 -- |
 -- Equivalent to 'catMaybes'.
