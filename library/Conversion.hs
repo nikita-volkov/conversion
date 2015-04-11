@@ -322,9 +322,9 @@ instance Conversion Word8 Integer where
   {-# INLINE convert #-}
   convert = fromIntegral
 
-instance Alternative f => Conversion Word8 (f Int) where 
+instance Conversion Word8 Int where 
   {-# INLINE convert #-}
-  convert = checkedFromIntegral
+  convert = fromIntegral
 
 instance Alternative f => Conversion Word8 (f Int8) where 
   {-# INLINE convert #-}
