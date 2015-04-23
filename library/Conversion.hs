@@ -7,9 +7,6 @@ import BasePrelude
 -- A type-class, 
 -- which provides a non-partial conversion function from a value of type @a@ 
 -- to a value of type @b@.
--- 
--- As per <http://en.wikipedia.org/wiki/Morphism#Definition the definition of Morphism>,
--- @a@ is the /domain/ and @b@ is the /codomain/.
 class Conversion a b where
   convert :: a -> b
 
