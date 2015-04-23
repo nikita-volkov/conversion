@@ -3,7 +3,7 @@ name:
 version:
   1.1.0.0
 synopsis:
-  Universal conversion between values of different types
+  Universal converter between values of different types
 category:
   Control, Data, Conversion
 homepage:
