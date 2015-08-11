@@ -1,4 +1,10 @@
-module Conversion (Conversion(..)) where
+module Conversion
+(
+  Conversion(..), 
+  convert1, 
+  convert2,
+) 
+where
 
 import BasePrelude
 
@@ -543,3 +549,17 @@ isomorphicallyChecked =
 checkedFromIntegral :: (Alternative f, Integral a, Integral b) => a -> f b
 checkedFromIntegral =
   \a -> fromIntegral a & \b -> if fromIntegral b == a then pure b else empty
+
+-- |
+-- A utility, which helps the compiler resolve the type in case of conversion of types of kind @* -> *@.
+{-# INLINE convert1 #-}
+convert1 :: Conversion (a x) (b x) => a x -> b x
+convert1 = 
+  convert
+
+-- |
+-- A utility, which helps the compiler resolve the type in case of conversion of types of kind @* -> * -> *@.
+{-# INLINE convert2 #-}
+convert2 :: Conversion (a x1 x2) (b x1 x2) => a x1 x2 -> b x1 x2
+convert2 = 
+  convert
