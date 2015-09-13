@@ -18,6 +18,12 @@ class Conversion a b where
 
 
 -- |
+-- the id conversion
+instance Conversion a a where
+  convert = id
+
+
+-- |
 -- Equivalent to 'atomically'.
 instance Conversion (STM a) (IO a) where
   {-# INLINE convert #-}
