@@ -1,3 +1,4 @@
+{-# LANGUAGE IncoherentInstances #-}
 module Conversion
 (
   Conversion(..), 
@@ -18,8 +19,9 @@ class Conversion a b where
 
 
 -- |
--- the id conversion
+-- Equivalent to 'id'.
 instance Conversion a a where
+  {-# INLINE convert #-}
   convert = id
 
 
