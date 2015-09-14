@@ -1,3 +1,4 @@
+{-# LANGUAGE IncoherentInstances #-}
 module Conversion
 (
   Conversion(..), 
@@ -15,6 +16,13 @@ import BasePrelude
 -- to a value of type @b@.
 class Conversion a b where
   convert :: a -> b
+
+
+-- |
+-- Equivalent to 'id'.
+instance Conversion a a where
+  {-# INLINE convert #-}
+  convert = id
 
 
 -- |
